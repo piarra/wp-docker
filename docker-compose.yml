@@ -10,7 +10,7 @@ services:
     image: mysql:5.7
     volumes:
       - ./docker/mysql/conf.d:/etc/mysql/conf.d
-      - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
     ports:
       - 3306:3306
