@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  wordpress: 
+    image: wordpress:latest
+    volumes:
+        - ./wordpress:/var/www/html
+    ports:
+      - 8000:80
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./docker/mysql/init.d:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: devel
+      MYSQL_PASSWORD: orange
+      TZ: 'Asia/Tokyo'
+volumes:
+  db-data:
